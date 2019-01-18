@@ -1,29 +1,8 @@
 const express = require('express');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys = require('./config/keys.js');
+require('./services/passport.js');
 
 const app = express();
-
-passport.use(new GoogleStrategy({
-  clientID: keys.googleClientID,
-  clientSecret: keys.googleClientSecret,
-  callbackURL: '/auth/google/callback'
-}, (accessToken,refreshToken,profile,done) => {
-  console.log(accessToken,'accessToken');
-  console.log(refreshToken,'refreshToken');
-  console.log(profile, 'profile');
-}));
-
-app.get('/auth/google', passport.authenticate('google', {
-  scope: ['profile','email']
-}));
-
-app.get('/auth/google/callback', passport.authenticate('google'));
-// passport will see 'code' in the URL and know this is not the first
-// attempt to autheticate. It wll try to exchange the code for a user profile
-
-
+require('./routes/authRoutes')(app);
 
 
 

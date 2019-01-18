@@ -9,8 +9,10 @@ passport.use(new GoogleStrategy({
   clientID: keys.googleClientID,
   clientSecret: keys.googleClientSecret,
   callbackURL: '/auth/google/callback'
-}, (accessToken) => {
-  console.log(accessToken);
+}, (accessToken,refreshToken,profile,done) => {
+  console.log(accessToken,'accessToken');
+  console.log(refreshToken,'refreshToken');
+  console.log(profile, 'profile');
 }));
 
 app.get('/auth/google', passport.authenticate('google', {
@@ -19,7 +21,7 @@ app.get('/auth/google', passport.authenticate('google', {
 
 app.get('/auth/google/callback', passport.authenticate('google'));
 // passport will see 'code' in the URL and know this is not the first
-// attempt to autheticate. It iwll try to exchange the code for a user profile
+// attempt to autheticate. It wll try to exchange the code for a user profile
 
 
 

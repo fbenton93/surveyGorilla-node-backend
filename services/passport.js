@@ -5,6 +5,20 @@ const keys = require('../config/keys.js');
 
 const User = mongoose.model('users');
 
+passport.serializeUser((user,done) => {
+  done(null,user.id);
+  // user.id is a reference to the Mongo unique identifier
+  // research the uses of done callback
+});
+
+passport.deserializeUser((id,done) => {
+  User.findById(id)
+  .then((user) => {
+    done(null,user);
+  })
+});
+
+
 passport.use(new GoogleStrategy({
   clientID: keys.googleClientID,
   clientSecret: keys.googleClientSecret,

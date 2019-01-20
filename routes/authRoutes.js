@@ -5,13 +5,15 @@ module.exports = (app) => {
     scope: ['profile','email']
   }));
 
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get('/auth/google/callback', passport.authenticate('google'), (req,res) => {
+    res.redirect('/surveys');
+  } );
   // passport will see 'code' in the URL and know this is not the first
   // attempt to autheticate. It wll try to exchange the code for a user profile
 
   app.get('/api/logout', (req,res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect('/');
   });
 
 

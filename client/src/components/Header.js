@@ -15,6 +15,7 @@ class Header extends Component {
       default:
         return [
           <li key="payments"><Payments /></li>,
+          <li key="credits" style={{ margin: '0 10px' }}>{this.props.auth.credits} Credits</li>,
           <li key="logout"><a href="/api/logout">Logout</a></li>
         ];
     }
@@ -27,6 +28,7 @@ class Header extends Component {
           <Link
           to={this.props.auth ? '/surveys' : '/'}
           className="left brand-logo"
+          style={{ margin: '0 10px' }}
           >
             SurveyGorilla
           </Link>

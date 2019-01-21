@@ -3,10 +3,6 @@ const stripe = require('stripe')(keys.stripeSecretKey);
 const requireLogin = require('../middlewares/requireLogin.js');
 
 
-if(process.env.NODE_ENV === 'production') {
-  stripe.setPublishableKey(keys.stripePublishableKey);
-}
-
 
 
 module.exports = (app) => {

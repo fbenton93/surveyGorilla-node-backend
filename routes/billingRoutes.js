@@ -2,7 +2,10 @@ const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 const requireLogin = require('../middlewares/requireLogin.js');
 
-stripe.setPublishableKey(keys.stripePublishableKey);
+
+if(process.env.NODE_ENV === 'production') {
+  strip.setPublishableKey(keys.stripePublishableKey);
+}
 
 
 

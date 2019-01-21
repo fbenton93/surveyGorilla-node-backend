@@ -4,7 +4,7 @@ const requireLogin = require('../middlewares/requireLogin.js');
 
 
 if(process.env.NODE_ENV === 'production') {
-  strip.setPublishableKey(keys.stripePublishableKey);
+  stripe.setPublishableKey(keys.stripePublishableKey);
 }
 
 

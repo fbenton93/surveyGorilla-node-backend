@@ -6,6 +6,7 @@ const requireLogin = require('../middlewares/requireLogin.js');
 
 
 module.exports = (app) => {
+
   app.post('/api/stripe', requireLogin, async (req,res) => {
 
     const charge = await stripe.charges.create({
